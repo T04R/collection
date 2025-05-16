@@ -8,4 +8,6 @@ This repository contains a collection of post-exploitation techniques focused on
 
 **Credits:**  
 
-
+[reenz0h](https://x.com/SEKTOR7net)
+Joe Desimone
+Cornelis de Plaa
