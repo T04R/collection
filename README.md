@@ -6,7 +6,7 @@ This repository contains a collection of post-exploitation techniques focused on
 - **Lateral Movement**  
 - **Evasion**  
 
-**Thanks to:**
+**Thanks to:**  
 [reenz0h](https://x.com/SEKTOR7net)  
 Joe Desimone  
 Cornelis de Plaa  
