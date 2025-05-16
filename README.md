@@ -14,6 +14,6 @@ Cornelis de Plaa
 ---
 
 
-### other shellcode for evasion**  
+### other shellcode for evasion  
 https://github.com/b1nhack/rust-shellcode  
 https://github.com/Ne0nd0g/go-shellcode  
