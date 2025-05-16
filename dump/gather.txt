@@ -1,0 +1,121 @@
+
+@echo off
+echo =====================================
+echo      Active Directory Information
+echo =====================================
+
+:: User Domain and Logon Server Information
+echo.
+echo [*] User Domain & Logon Server:
+echo -------------------------------------
+echo User Domain: %USERDOMAIN%
+echo Logon Server: %LOGONSERVER%
+echo.
+
+:: Display all Domain Controllers
+echo [*] Domain Controllers:
+echo -------------------------------------
+nltest /dclist:%USERDOMAIN%
+echo.
+
+:: Display information about the current Domain Controller
+echo [*] Current Domain Controller Info:
+echo -------------------------------------
+nltest /dsgetdc:%USERDOMAIN%
+echo.
+
+:: Display all users in the domain
+echo [*] All Users in Active Directory:
+echo -------------------------------------
+net user /domain
+echo.
+
+:: Display details of a specific user (change as needed)
+echo [*] Details of 'Administrator' User:
+echo -------------------------------------
+net user Administrator /domain
+echo.
+
+:: Display all groups in Active Directory
+echo [*] All Groups in Active Directory:
+echo -------------------------------------
+net group /domain
+echo.
+
+:: Display members of the Domain Admins group
+echo [*] Members of 'Domain Admins':
+echo -------------------------------------
+net group "Domain Admins" /domain
+echo.
+
+:: Display all computers in the domain
+echo [*] All Computers in Domain:
+echo -------------------------------------
+net view /domain
+echo.
+
+:: Display all objects in Active Directory
+echo [*] All Active Directory Objects:
+echo -------------------------------------
+dsquery * -limit 0
+echo.
+
+:: Display all users in Active Directory
+echo [*] All Active Directory Users:
+echo -------------------------------------
+dsquery user -limit 0
+echo.
+
+:: Display all Active Directory servers
+echo [*] All Active Directory Servers:
+echo -------------------------------------
+dsquery server
+echo.
+
+:: Display all Organizational Units (OUs)
+echo [*] All Organizational Units (OUs):
+echo -------------------------------------
+dsquery ou
+echo.
+
+:: Display recently logged-in users
+echo [*] Recently Logged-in Users:
+echo -------------------------------------
+quser
+echo.
+
+:: Display domain DNS settings
+echo [*] Domain DNS Info:
+echo -------------------------------------
+ipconfig /all | findstr "Primary DNS Suffix"
+echo.
+
+:: Display complete trust information between domains
+echo [*] Domain Trusts:
+echo -------------------------------------
+nltest /domain_trusts
+echo.
+
+:: Display all domain names in the network
+echo [*] All Domain Names in Network:
+echo -------------------------------------
+wmic computersystem get domain
+echo.
+
+:: Display domain functional level
+echo [*] Domain Functional Level:
+echo -------------------------------------
+dsquery * "CN=Partitions,CN=Configuration,DC=%USERDOMAIN%" -scope base -attr msDS-Behavior-Version
+echo.
+
+:: Display domain Group Policy Objects (GPOs)
+echo [*] Domain Group Policy Objects (GPOs):
+echo -------------------------------------
+gpresult /R /scope computer
+echo.
+
+:: End
+echo =====================================
+echo         Data Collection Complete
+echo =====================================
+pause
