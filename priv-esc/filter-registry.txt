@@ -1,0 +1,163 @@
+
+dir /b /a /s c:\ > cdir.tx
+type cdir.txt | findstr /i passw
+
+# Comprehensive list of files containing sensitive information and passwords
+
+## System configuration files
+unattend.xml
+Unattended.xml
+sysprep.inf
+sysprep.xml
+VARIABLES.DAT
+setupinfo
+setupinfo.bak
+web.config
+SiteList.xml
+php.ini
+httpd.conf
+my.cnf
+postgresql.conf
+
+## Log and backup files
+*.log
+*.bak
+*.old
+*.backup
+*.swp
+*.swo
+*.tar
+*.gz
+*.zip
+
+## Authentication files
+id_rsa
+id_dsa
+*.pem
+*.key
+*.ppk
+*.pgp
+*.gpg
+*.kdbx
+*.agilekeychain
+*.p12
+*.pfx
+*.der
+*.cer
+*.crt
+*.csr
+*.jks
+*.keystore
+
+## Network connection information
+*.ovpn
+*.conf
+*.rdp
+*.vnc
+*.remmina
+*.sqlite
+*.db
+
+## Cloud service files
+.aws/credentials
+.aws/config
+.azure/accessTokens.json
+.azure/azureProfile.json
+.gcloud/credentials.db
+.gcloud/legacy_credentials
+.gcloud/access_tokens.db
+
+## Developer files
+.env
+*.tfvars
+*.git-credentials
+.git/config
+docker-compose.yml
+*.npmrc
+*.pypirc
+*.htpasswd
+
+## System management files
+/etc/passwd
+/etc/shadow
+/etc/hosts
+/etc/fstab
+/boot/grub/grub.cfg
+
+## Browser files
+Cookies
+Login Data
+History
+Web Data
+*.sqlite
+*.json
+
+## Desktop files
+*.lnk
+*.url
+*.desktop
+*.ps1
+*.vbs
+*.bat
+*.cmd
+
+---------------------------------------------------------------------------------
+
+reg query "HKCU\Software\ORL\WinVNC3\Password"
+reg query "HKCU\Software\TightVNC\Server"
+reg query "HKCU\Software\SimonTatham\PuTTY\Sessions"
+reg query "HKCU\Software\OpenSSH\Agent\Keys"
+reg query HKLM /f password /t REG_SZ /s
+reg query HKCU /f password /t REG_SZ /s
+reg query HKCU /f credential /t REG_SZ /s
+
+:: Check VNC information (remote control)
+reg query "HKCU\Software\ORL\WinVNC3\Password"
+reg query "HKCU\Software\TightVNC\Server"
+reg query "HKCU\Software\RealVNC\WinVNC4"
+reg query "HKLM\SOFTWARE\RealVNC\vncserver"
+
+:: Check SSH/PuTTY information
+reg query "HKCU\Software\SimonTatham\PuTTY\Sessions"
+reg query "HKCU\Software\OpenSSH\Agent\Keys"
+reg query "HKCU\.ssh\config"
+
+:: Check Remote Desktop information
+reg query "HKCU\Software\Microsoft\Terminal Server Client\Servers"
+reg query "HKCU\Software\Microsoft\Terminal Server Client\Default"
+
+:: General search for passwords
+reg query HKLM /f password /t REG_SZ /s
+reg query HKCU /f password /t REG_SZ /s
+reg query HKCR /f password /t REG_SZ /s
+
+:: Check login information
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v DefaultPassword
+
+:: Check network and proxy information
+reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyServer
+reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyUser
+reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyPass
+
+:: Check SNMP information
+reg query "HKLM\SYSTEM\CurrentControlSet\Services\SNMP" /s
+
+:: Check cloud software information
+reg query "HKCU\Software\Amazon\AWS" /s
+reg query "HKCU\Software\Google\Cloud SDK" /s
+reg query "HKCU\Software\Microsoft\Azure" /s
+
+:: Check browser information
+reg query "HKCU\Software\Google\Chrome" /f password /t REG_SZ /s
+reg query "HKCU\Software\Mozilla\Firefox" /f password /t REG_SZ /s
+
+:: Check database information
+reg query "HKLM\SOFTWARE\MySQL AB" /s
+reg query "HKLM\SOFTWARE\PostgreSQL" /s
+
+:: Check FTP/Email information
+reg query "HKCU\Software\FileZilla" /s
+reg query "HKCU\Software\Microsoft\Office" /f password /t REG_SZ /s
+
+
