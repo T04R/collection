@@ -1,0 +1,9 @@
+schtask /query /xml > task.xml
+
+reg query "HKCU\CLSID{99-99}\Inprocserver32"
+reg query "HKLM\software\classes\CLSID{99-99}\Inprocserver32"
+reg export "HKLM\software\classes\CLSID{99-99}" reg22.reg /reg:64 /y
+
+EDIT FILE reg22.reg
+
+reg import reg22.reg /reg:64

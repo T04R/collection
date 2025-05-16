@@ -1,0 +1,17 @@
+
+----ADD
+
+reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\TimeProviders\TimeProv" /t REG_EXPAND_SZ /v "DllName" /d "%systemroot%\system32\timeprov.dll" /f
+
+reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\TimeProviders\TimeProv" /t REG_DWORD /v "Enabled" /d "1" /f
+reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\TimeProviders\TimeProv" /t REG_DWORD /v "InputProvider" /d "1" /f
+
+
+copy timeprov.dll c:\Windows\System32
+
+
+----DEL
+
+reg delete "HKLM\System\CurrentControlSet\Services\W32Time\TimeProviders\TimeProv" /v DllName /f
+reg add "HKLM\System\CurrentControlSet\Services\W32Time\TimeProviders\TimeProv" /v Enabled /t REG_DWORD /d 0 /f
+reg add "HKLM\System\CurrentControlSet\Services\W32Time\TimeProviders\TimeProv" /v InputProvider /t REG_DWORD /d 0 /f

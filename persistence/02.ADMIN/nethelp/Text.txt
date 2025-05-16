@@ -1,0 +1,2 @@
+netsh.exe add implant.dll
+netsh.exe del implant.dll

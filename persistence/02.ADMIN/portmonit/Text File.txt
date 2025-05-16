@@ -1,0 +1,2 @@
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Print\Monitors\PartMonitor" /v Driver /t REG_SZ /d "portmon.dll" /f
+
